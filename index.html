@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redwood Hope Logo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+
+  <style>
+    /* General page styling */
+   body {
+      margin: 0;
+      background-color: #111; /* Dark background */
+      color: #777; /* Default text color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+		font-weight: 200;
+      height: 100vh;
+      line-height: 1;
+      font-family: 'Dosis', serif; /* Google Font */
+      font-size: 90px; /* Font size */
+      text-transform: uppercase; /* Ensure all letters are uppercase */
+    }
+
+    /* Grid layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr); /* 7 equal columns for REDWOOD */
+      grid-template-rows: repeat(4, 1fr); /* 4 rows for HOPE and REDWOOD */
+      gap: 10px; /* Spacing between grid items */
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* Letters in the grid */
+    .letter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0; /* Start invisible */
+      animation: fadeIn 2s forwards; /* Fade-in animation */
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Vertically aligned HOPE letters */
+    .hope-h {
+      grid-column: 5; /* Move HOPE one column to the right */
+      grid-row: 1; /* First row */
+		 color: rgba(118, 93, 105, 0.8);
+    }
+    .hope-o {
+      grid-column: 5; /* Move HOPE one column to the right */
+      grid-row: 2; /* Second row (shared with REDWOOD) */
+		 color: rgba(118, 93, 105, 0.8);
+    }
+    .hope-p {
+      grid-column: 5; /* Move HOPE one column to the right */
+      grid-row: 3; /* Third row */
+		 color: rgba(118, 93, 105, 0.8);
+    }
+    .hope-e {
+      grid-column: 5; /* Move HOPE one column to the right */
+      grid-row: 4; /* Fourth row */
+		 color: rgba(118, 93, 105, 0.8);
+    }
+
+    /* REDWOOD letters */
+    .redwood-r {
+      grid-column: 1; /* First column */
+      grid-row: 2; /* Second row */
+    }
+    .redwood-e {
+      grid-column: 2; /* Second column */
+      grid-row: 2; /* Second row */
+    }
+    .redwood-d {
+      grid-column: 3; /* Third column */
+      grid-row: 2; /* Second row */
+    }
+    .redwood-o {
+      grid-column: 4; /* Fourth column (shared with HOPE's O) */
+      grid-row: 2; /* Second row */
+		 
+    }
+    .redwood-w {
+      grid-column: 5; /* Fifth column */
+      grid-row: 2; /* Second row */
+		 color: rgba(118, 93, 105, 0.8);
+
+    }
+    .redwood-o2 {
+      grid-column: 6; /* Sixth column */
+      grid-row: 2; /* Second row */
+		 
+    }
+    .redwood-d2 {
+      grid-column: 7; /* Seventh column */
+      grid-row: 2; /* Second row */
+    }
+
+		@media (max-width: 768px) {
+  body {
+    font-size: 20px; /* Adjust font size for mobile phones */
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Logo layout in a grid -->
+  <div class="grid">
+    <!-- HOPE letters -->
+    <div class="letter hope-h">H</div>
+    <div class="letter hope-o">O</div>
+    <div class="letter hope-p">P</div>
+    <div class="letter hope-e">E</div>
+
+    <!-- REDWOOD letters -->
+    <div class="letter redwood-r">R</div>
+    <div class="letter redwood-e">E</div>
+    <div class="letter redwood-d">D</div>
+    <div class="letter redwood-o">W</div>
+    <div class="letter redwood-w">O</div>
+    <div class="letter redwood-o2">O</div>
+    <div class="letter redwood-d2">D</div>
+  </div>
+ <script>
+    // Select all letter elements
+    const letters = document.querySelectorAll('.letter');
+
+    // Loop through each letter and apply a random animation delay
+    letters.forEach(letter => {
+const randomDelayMs = Math.random() * 3000 + 500; // Generates 1000 to 4000 ms
+const randomDelaySeconds = randomDelayMs / 1000; // Convert to seconds
+letter.style.animationDelay = `${randomDelaySeconds}s`; // Set in seconds
+    });
+  </script>
+</body>
+</html>
