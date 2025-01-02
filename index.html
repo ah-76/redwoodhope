@@ -1,216 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>The Redwood Hope Trust</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <head>
+    <meta charset="UTF-8">
+    <title>The Redwood Hope Trust</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <style>
+      /* General page styling */
+      body {
+        margin: 0;
+        background-color: #111;
+        color: #777;
+        /* Default text color */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 200;
+        min-height: calc(var(--vh, 1vh) * 100);
+        line-height: 1;
+        font-family: 'Dosis', serif;
+        /* Google Font */
+        font-size: 90px;
+        /* Font size */
+        text-transform: uppercase;
+        /* Ensure all letters are uppercase */
+        -webkit-font-smoothing: antialiased;
+        /* Font smoothing */
+        -moz-osx-font-smoothing: grayscale;
+        /* Font smoothing */
+        overflow: hidden;
+        /* Disable scrolling */
+      }
 
-  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('r1.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        z-index: -1;
+        animation: fadeInBackground 1s forwards;
+        /* Fade-in animation for background */
+      }
 
-  <style>
-    /* General page styling */
-    body {
-      margin: 0;
-      background-color: #111;
-      color: #777; /* Default text color */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 200;
-      min-height: calc(var(--vh, 1vh) * 100);
-      line-height: 1;
-      font-family: 'Dosis', serif; /* Google Font */
-      font-size: 90px; /* Font size */
-      text-transform: uppercase; /* Ensure all letters are uppercase */
-      -webkit-font-smoothing: antialiased; /* Font smoothing */
-      -moz-osx-font-smoothing: grayscale; /* Font smoothing */
-      overflow: hidden; /* Disable scrolling */
-    }
-
-    body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('r1.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            z-index: -1;
-            animation: fadeInBackground 1s forwards; /* Fade-in animation for background */
+      @keyframes fadeInBackground {
+        from {
+          opacity: 0;
         }
 
-    @keyframes fadeInBackground {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.1; /* Final opacity for the background */
-  }
-}
+        to {
+          opacity: 0.1;
+          /* Final opacity for the background */
+        }
+      }
 
-    #page-footer {
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-  font-size: 15px;
-  color: #555;
-  opacity: 0; /* Initially hidden */
-  animation: fadeInFooter 1s ease-in forwards;
-  animation-delay: 8s; /* Delays the animation for 8 seconds */
-}
+      /* Grid layout */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        /* 7 equal columns for REDWOOD */
+        grid-template-rows: repeat(4, 1fr);
+        /* 4 rows for HOPE and REDWOOD */
+        gap: 10px;
+        /* Spacing between grid items */
+        text-align: center;
+      }
 
-/* Keyframes for fading in */
-@keyframes fadeInFooter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-
-    /* Grid layout */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr); /* 7 equal columns for REDWOOD */
-      grid-template-rows: repeat(4, 1fr); /* 4 rows for HOPE and REDWOOD */
-      gap: 10px; /* Spacing between grid items */
-      text-align: center;
-    }
-
-    /* Letters in the grid */
-    .letter {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0; /* Start invisible */
-      animation: fadeIn 2s forwards;    
-    }
-
-    /* Fade-in animation */
-    @keyframes fadeIn {
-      from {
+      /* Letters in the grid */
+      .letter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         opacity: 0;
+        /* Start invisible */
+        animation: fadeIn 2s forwards;
       }
-      to {
-        opacity: 1;
+
+      /* Fade-in animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
       }
-    }
 
-
-    /* Vertically aligned HOPE letters */
-    .hope-h {
-      grid-column: 5; /* Move HOPE one column to the right */
-      grid-row: 1; /* First row */
-      color: rgba(118, 93, 105, 0.8);
-    }
-    .hope-o {
-      grid-column: 5; /* Move HOPE one column to the right */
-      grid-row: 2; /* Second row (shared with REDWOOD) */
-      color: rgba(118, 93, 105, 0.8);
-    }
-    .hope-p {
-      grid-column: 5; /* Move HOPE one column to the right */
-      grid-row: 3; /* Third row */
-      color: rgba(118, 93, 105, 0.8);
-    }
-    .hope-e {
-      grid-column: 5; /* Move HOPE one column to the right */
-      grid-row: 4; /* Fourth row */
-      color: rgba(118, 93, 105, 0.8);
-    }
-
-    /* Horizontal REDWOOD letters */
-    .redwood-r {
-      grid-column: 1; /* First column */
-      grid-row: 2; /* Second row */
-    }
-    .redwood-e {
-      grid-column: 2; /* Second column */
-      grid-row: 2; /* Second row */
-    }
-    .redwood-d {
-      grid-column: 3; /* Third column */
-      grid-row: 2; /* Second row */
-    }
-    .redwood-o {
-      grid-column: 4; /* Fourth column (shared with HOPE's O) */
-      grid-row: 2; /* Second row */
-    }
-    .redwood-w {
-      grid-column: 5; /* Fifth column */
-      grid-row: 2; /* Second row */
-      color: rgba(118, 93, 105, 0.8);
-    }
-    .redwood-o2 {
-      grid-column: 6; /* Sixth column */
-      grid-row: 2; /* Second row */
-    }
-    .redwood-d2 {
-      grid-column: 7; /* Seventh column */
-      grid-row: 2; /* Second row */
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      body {
-        font-size: 40px; /* Adjust font size for mobile phones */
+      /* Vertically aligned HOPE letters */
+      .hope-h {
+        grid-column: 5;
+        /* Move HOPE one column to the right */
+        grid-row: 1;
+        /* First row */
+        color: rgba(118, 93, 105, 0.8);
       }
-    }
-  </style>
-</head>
-<body>
 
-  <!-- Logo layout in a grid -->
-  <div class="grid">
-    <!-- HOPE letters -->
-    <div class="letter hope-h">H</div>
-    <div class="letter hope-o">O</div>
-    <div class="letter hope-p">P</div>
-    <div class="letter hope-e">E</div>
+      .hope-o {
+        grid-column: 5;
+        /* Move HOPE one column to the right */
+        grid-row: 2;
+        /* Second row (shared with REDWOOD) */
+        color: rgba(118, 93, 105, 0.8);
+      }
 
-    <!-- REDWOOD letters -->
-    <div class="letter redwood-r">R</div>
-    <div class="letter redwood-e">E</div>
-    <div class="letter redwood-d">D</div>
-    <div class="letter redwood-o">W</div>
-    <div class="letter redwood-w">O</div>
-    <div class="letter redwood-o2">O</div>
-    <div class="letter redwood-d2">D</div>
-  </div>
+      .hope-p {
+        grid-column: 5;
+        /* Move HOPE one column to the right */
+        grid-row: 3;
+        /* Third row */
+        color: rgba(118, 93, 105, 0.8);
+      }
 
-  <footer id="page-footer">© Andrew Hewitt 2025</footer>
+      .hope-e {
+        grid-column: 5;
+        /* Move HOPE one column to the right */
+        grid-row: 4;
+        /* Fourth row */
+        color: rgba(118, 93, 105, 0.8);
+      }
 
+      /* Horizontal REDWOOD letters */
+      .redwood-r {
+        grid-column: 1;
+        /* First column */
+        grid-row: 2;
+        /* Second row */
+      }
 
-  <script>
-    // Select all letter elements
-    const letters = document.querySelectorAll('.letter');
+      .redwood-e {
+        grid-column: 2;
+        /* Second column */
+        grid-row: 2;
+        /* Second row */
+      }
 
-    // Loop through each letter and apply a random animation delay
-    letters.forEach(letter => {
-      const randomDelayMs = Math.random() * 3500 + 1000; // Generates 500 to 3500 ms
-      const randomDelaySeconds = randomDelayMs / 1000; // Convert to seconds
-      letter.style.animationDelay = `${randomDelaySeconds}s`; // Set in seconds
-    });
+      .redwood-d {
+        grid-column: 3;
+        /* Third column */
+        grid-row: 2;
+        /* Second row */
+      }
 
-    function updateViewportHeight() {
-  const vh = window.innerHeight * 0.01; // Calculate 1% of the viewport height
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
+      .redwood-o {
+        grid-column: 4;
+        /* Fourth column (shared with HOPE's O) */
+        grid-row: 2;
+        /* Second row */
+      }
 
-// Update on page load
-updateViewportHeight();
+      .redwood-w {
+        grid-column: 5;
+        /* Fifth column */
+        grid-row: 2;
+        /* Second row */
+        color: rgba(118, 93, 105, 0.8);
+      }
 
-// Update on resize
-window.addEventListener('resize', updateViewportHeight);
+      .redwood-o2 {
+        grid-column: 6;
+        /* Sixth column */
+        grid-row: 2;
+        /* Second row */
+      }
 
+      .redwood-d2 {
+        grid-column: 7;
+        /* Seventh column */
+        grid-row: 2;
+        /* Second row */
+      }
 
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        body {
+          font-size: 40px;
+          /* Adjust font size for mobile phones */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Logo layout in a grid -->
+    <div class="grid">
+      <!-- HOPE letters -->
+      <div class="letter hope-h">H</div>
+      <div class="letter hope-o">O</div>
+      <div class="letter hope-p">P</div>
+      <div class="letter hope-e">E</div>
+      <!-- REDWOOD letters -->
+      <div class="letter redwood-r">R</div>
+      <div class="letter redwood-e">E</div>
+      <div class="letter redwood-d">D</div>
+      <div class="letter redwood-o">W</div>
+      <div class="letter redwood-w">O</div>
+      <div class="letter redwood-o2">O</div>
+      <div class="letter redwood-d2">D</div>
+    </div>
+    <script>
+      // Select all letter elements
+      const letters = document.querySelectorAll('.letter');
+      // Loop through each letter and apply a random animation delay
+      letters.forEach(letter => {
+        const randomDelayMs = Math.random() * 3500 + 1000; // Generates 500 to 3500 ms
+        const randomDelaySeconds = randomDelayMs / 1000; // Convert to seconds
+        letter.style.animationDelay = `${randomDelaySeconds}s`; // Set in seconds
+      });
 
-  </script>
-</body>
+      function updateViewportHeight() {
+        const vh = window.innerHeight * 0.01; // Calculate 1% of the viewport height
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      // Update on page load
+      updateViewportHeight();
+      // Update on resize
+      window.addEventListener('resize', updateViewportHeight);
+    </script>
+  </body>
 </html>
