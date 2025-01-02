@@ -167,7 +167,7 @@
 
     // Loop through each letter and apply a random animation delay
     letters.forEach(letter => {
-      const randomDelayMs = Math.random() * 3000 + 500; // Generates 500 to 3500 ms
+      const randomDelayMs = Math.random() * 3500 + 1000; // Generates 500 to 3500 ms
       const randomDelaySeconds = randomDelayMs / 1000; // Convert to seconds
       letter.style.animationDelay = `${randomDelaySeconds}s`; // Set in seconds
     });
