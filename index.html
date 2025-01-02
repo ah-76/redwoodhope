@@ -42,7 +42,7 @@
       justify-content: center;
       align-items: center;
       opacity: 0; /* Start invisible */
-      animation: fadeIn 2s forwards; /* Fade-in animation */
+      animation: fadeIn 2s forwards, wave 2s infinite ease-in-out; /* Add wave after fade-in */
     }
 
     /* Fade-in animation */
@@ -54,6 +54,16 @@
         opacity: 1;
       }
     }
+
+    @keyframes wave {
+  0%, 100% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.05); /* Slightly larger */
+  }
+}
+
 
     /* Vertically aligned HOPE letters */
     .hope-h {
@@ -157,6 +167,13 @@ updateViewportHeight();
 
 // Update on resize
 window.addEventListener('resize', updateViewportHeight);
+
+    const letters = document.querySelectorAll('.letter');
+// Loop through each letter and assign an animation delay
+letters.forEach((letter, index) => {
+  const delay = index * 0.2; // Stagger each letter by 0.2 seconds
+  letter.style.animationDelay = `${delay}s`;
+});
 
   </script>
 </body>
