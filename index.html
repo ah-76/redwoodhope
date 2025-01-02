@@ -51,6 +51,29 @@
   }
 }
 
+    #page-footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  color: #555;
+  opacity: 0; /* Initially hidden */
+  animation: fadeInFooter 1s ease-in forwards;
+  animation-delay: 8s; /* Delays the animation for 8 seconds */
+}
+
+/* Keyframes for fading in */
+@keyframes fadeInFooter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
     /* Grid layout */
     .grid {
       display: grid;
@@ -160,6 +183,9 @@
     <div class="letter redwood-o2">O</div>
     <div class="letter redwood-d2">D</div>
   </div>
+
+  <footer id="page-footer">© Andrew Hewitt 2025</footer>
+
 
   <script>
     // Select all letter elements
