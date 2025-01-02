@@ -7,8 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
 
   <style>
-    /* General page styling */
-   body {
+ 
+
+	  body {
       margin: 0;
       background-color: #111; /* Dark background */
       color: #777; /* Default text color */
@@ -21,6 +22,9 @@
       font-family: 'Dosis', serif; /* Google Font */
       font-size: 90px; /* Font size */
       text-transform: uppercase; /* Ensure all letters are uppercase */
+		    -webkit-font-smoothing: antialiased; /* Font smoothing */
+  -moz-osx-font-smoothing: grayscale; /* Font smoothing */
+  overflow: hidden; /* Disable scrolling */
     }
 
     /* Grid layout */
@@ -112,6 +116,12 @@
   body {
     font-size: 20px; /* Adjust font size for mobile phones */
   }
+			.grid {
+  justify-content: center; /* Center the grid horizontally */
+  align-items: center; /* Center the grid vertically */
+  margin: 0; /* Remove any margins that push the grid offscreen */
+}
+
 }
 
   </style>
