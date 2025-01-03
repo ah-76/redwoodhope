@@ -6,276 +6,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
     <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-	  /* Prevent text selection */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  
-  /* Prevent touch callouts on iOS */
-  -webkit-touch-callout: none;
-  
-  /* Prevent double-tap to zoom */
-  touch-action: manipulation;
-}
+      /* Reset and Box-Sizing */
+      html, body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-body {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  background-color: #111;
-  color: #777;
-  font-weight: 200;
-  min-height: calc(var(--vh, 1vh) * 100);
-  line-height: 1;
-  font-family: 'Dosis', serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
-}
+      /* Body Styling */
+      body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        background-color: #111;
+        color: #777;
+        font-weight: 200;
+        min-height: calc(var(--vh, 1vh) * 100);
+        line-height: 1;
+        font-family: 'Dosis', serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow: hidden;
 
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('r1.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  z-index: -1;
-  animation: fadeInBackground 3s forwards;
-}
+        /* Prevent text selection */
+        -webkit-user-select: none; /* Chrome, Safari, Opera */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard syntax */
 
-@keyframes fadeInBackground {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.1;
-  }
-}
+        /* Prevent touch callouts on iOS */
+        -webkit-touch-callout: none;
 
-		 
- 
+        /* Prevent double-tap zoom on mobile */
+        touch-action: manipulation;
+      }
 
+      /* Background Image Fade-In */
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('r1.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        z-index: -1;
+        animation: fadeInBackground 3s forwards;
+      }
 
+      @keyframes fadeInBackground {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 0.1;
+        }
+      }
 
+      /* Grid Layout */
+      .grid {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 10px;
+        font-size: 90px;
+        text-align: center;
+        transition: all 2s ease;
+        transform-origin: top left;
+      }
 
-		 
+      .grid:hover { 
+        cursor: pointer; 
+      }
 
-/* Grid layout */
-.grid {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 10px;
-	  font-size: 90px;
-  text-align: center;
-  transition: all 2s ease;
-  transform-origin: top left;
-}
+      .grid.move-top-left {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        transform: scale(0.5);
+        margin: 0;
+        padding: 0;
+        transform-origin: top left;
+      }
 
-.grid:hover { 
-  cursor: pointer; 
-}
+      body.grid-moved {
+        justify-content: initial;
+        align-items: initial;
+      }
 
-.grid.move-top-left {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  transform: scale(0.5);
-  margin: 0;
-  padding: 0;
-  transform-origin: top left;
-}
+      /* Letters in the Grid */
+      .letter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        filter: blur(5px);
+        animation: fadeIn 3s forwards;
+      }
 
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          filter: blur(5px);
+        }
+        to {
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
 
+      /* Vertically Aligned HOPE Letters */
+      .hope-h {
+        grid-column: 5;
+        grid-row: 1;
+        color: rgba(118, 93, 105, 0.8);
+      }
 
-		 
-		 
-body.grid-moved {
-  justify-content: initial;
-  align-items: initial;
-}
+      .hope-o {
+        grid-column: 5;
+        grid-row: 2;
+        display: none;
+      }
 
-/* Letters in the grid */
-.letter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-	  filter: blur(5px); /* Added line */
-  animation: fadeIn 3s forwards;
-}
+      .hope-p {
+        grid-column: 5;
+        grid-row: 3;
+        color: rgba(118, 93, 105, 0.8);
+      }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    filter: blur(5px); /* Added line */
-  }
-  to {
-    opacity: 1;
-    filter: blur(0); /* Added line */
-  }
-}
+      .hope-e {
+        grid-column: 5;
+        grid-row: 4;
+        color: rgba(118, 93, 105, 0.8);
+      }
 
+      /* Horizontal REDWOOD Letters */
+      .redwood-r {
+        grid-column: 1;
+        grid-row: 2;
+      }
 
-/* Vertically aligned HOPE letters */
-.hope-h {
-  grid-column: 5;
-  grid-row: 1;
-  color: rgba(118, 93, 105, 0.8);
-}
+      .redwood-e {
+        grid-column: 2;
+        grid-row: 2;
+      }
 
-.hope-o {
-  grid-column: 5;
-  grid-row: 2;
-  display: none;
-}
+      .redwood-d {
+        grid-column: 3;
+        grid-row: 2;
+      }
 
-.hope-p {
-  grid-column: 5;
-  grid-row: 3;
-  color: rgba(118, 93, 105, 0.8);
-}
+      .redwood-o {
+        grid-column: 4;
+        grid-row: 2;
+      }
 
-.hope-e {
-  grid-column: 5;
-  grid-row: 4;
-  color: rgba(118, 93, 105, 0.8);
-}
+      .redwood-w {
+        grid-column: 5;
+        grid-row: 2;
+        color: rgba(118, 93, 105, 0.8);
+      }
 
-/* Horizontal REDWOOD letters */
-.redwood-r {
-  grid-column: 1;
-  grid-row: 2;
-}
+      .redwood-o2 {
+        grid-column: 6;
+        grid-row: 2;
+      }
 
-.redwood-e {
-  grid-column: 2;
-  grid-row: 2;
-}
+      .redwood-d2 {
+        grid-column: 7;
+        grid-row: 2;
+      }
 
-.redwood-d {
-  grid-column: 3;
-  grid-row: 2;
-}
+      /* Company List Styling */
+      #company-list {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 35px;
+        color: rgba(85, 107, 47, 0.9);
+        opacity: 0;
+        transition: opacity 4s ease 1.5s;
+      }
 
-.redwood-o {
-  grid-column: 4;
-  grid-row: 2;
-}
+      /* Tooltip Container */
+      .tooltip-container {
+        position: relative;
+        display: inline-block; /* Prevent div from taking up full width */
+        margin: 5px 0; /* Reduce vertical spacing */
+        cursor: crosshair;
+        line-height: 0.8; /* Control line spacing */
+      }
 
-.redwood-w {
-  grid-column: 5;
-  grid-row: 2;
-  color: rgba(118, 93, 105, 0.8);
-}
+      /* Tooltip Styling */
+      .tooltip {
+        position: absolute;
+        bottom: 0;
+        left: 100%;
+        transform: translateY(0) translateX(10px); 
+        padding: 1rem 1.5rem;
+        background: rgba(17, 17, 17, 0.95);
+        color: rgba(119, 119, 119, 0.9);
+        border: 1px solid rgba(118, 93, 105, 0.3);
+        border-radius: 10px;
+        font-size: 20px;
+        width: 300px;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 1s ease;
+        pointer-events: none;
+        font-weight: 300;
+        line-height: 1.4;
+        z-index: 1000;
+      }
 
-.redwood-o2 {
-  grid-column: 6;
-  grid-row: 2;
-}
+      /* Tooltip Arrow (Hidden) */
+      .tooltip::after {
+        display: none;
+      }
 
-.redwood-d2 {
-  grid-column: 7;
-  grid-row: 2;
-}
+      /* Show Tooltip on Hover */
+      .tooltip-container:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
 
-/* Company list styling */
-#company-list {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 35px;
-  color: rgba(85, 107, 47, 0.9);
-  opacity: 0;
-  transition: opacity 4s ease 1.5s;
-}
-
-/* Tooltip Container */
-.tooltip-container {
-  position: relative;
-  display: inline-block; /* Prevent div from taking up full width */
-  margin: 5px 0; /* Reduce vertical spacing */
-  cursor: crosshair;
-  line-height: 0.8; /* Control line spacing */
-}
-
-
-/* Tooltip */
-.tooltip {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateY(0) translateX(10px); 
-  padding: 1rem 1.5rem;
-  background: rgba(17, 17, 17, 0.9);
-  color: rgba(119, 119, 119, 0.9);
-  border: 1px solid rgba(118, 93, 105, 0.3);
-  border-radius: 10px;
-  font-size: 20px;
-  width: 300px;
-  text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 1s ease;
-  pointer-events: none;
-  font-weight: 300;
-  line-height: 1.4;
-  z-index: 1000;
-}
-
-/* Tooltip arrow */
-.tooltip::after {
-display: none;
-}
-
-/* Show tooltip */
-.tooltip-container:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .grid {
-    font-size: 40px;
-  }
-	#company-list {
-	font-size: 20px;	
-	}
-	.tooltip {
-	font-size: 10px;	
-	}
-}
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .grid {
+          font-size: 40px;
+        }
+        #company-list {
+          font-size: 20px;	
+        }
+        .tooltip {
+          font-size: 10px;	
+        }
+      }
     </style>
   </head>
   <body>
 
-	    <audio id="background-music" src="forest.mp3" preload="auto"></audio>
+    <!-- Audio Element -->
+    <audio id="background-music" src="forest.mp3" preload="auto"></audio>
 
-    <!-- Logo layout in a grid -->
+    <!-- Logo Layout in a Grid -->
     <div class="grid">
-      <!-- HOPE letters -->
+      <!-- HOPE Letters -->
       <div class="letter hope-h">H</div>
       <div class="letter hope-o">O</div>
       <div class="letter hope-p">P</div>
       <div class="letter hope-e">E</div>
-      <!-- REDWOOD letters -->
+      <!-- REDWOOD Letters -->
       <div class="letter redwood-r">R</div>
       <div class="letter redwood-e">E</div>
       <div class="letter redwood-d">D</div>
@@ -285,156 +276,193 @@ display: none;
       <div class="letter redwood-d2">D</div>
     </div>
     <script>
-// Track the state of the grid
-let gridMoved = false;
+      // Track the state of the grid
+      let gridMoved = false;
 
-const grid = document.querySelector('.grid');
-let companyList;
+      const grid = document.querySelector('.grid');
+      let companyList;
 
-// Grid movement and text fade-in/out
-grid.addEventListener('click', () => {
-  if (!gridMoved) {
-    // Move grid to top-left
-    document.body.classList.add('grid-moved');
-    grid.classList.add('move-top-left');
-    gridMoved = true;
+      // Audio Control
+      const audio = document.getElementById('background-music');
 
-    const tooltips = {
-      'holdings': 'The central holding entity of the Redwood Hope Trust, guiding ventures that merge creativity, culture, and commerce to redefine societal impact through transformative innovation.',
-      'investments': 'A diversified investment arm funding creative ventures and philanthropy. Home to the Redwood Vision Fund, empowering innovation in creativity, technology, and psychology.',
-      'realestate': 'Oversees a portfolio of iconic properties, including cultural landmarks and serene living spaces, blending functionality with imaginative design.',
-      'foundation': 'A philanthropic initiative fostering creativity and exploration. Provides grants across art, writing, and psychoanalysis to transform cultural landscapes.'
-    };
+      // Initialize audio settings
+      audio.volume = 0; // Start with volume at 0 for fade-in
+      audio.loop = false; // We'll handle looping manually
 
-    companyList = document.createElement('div');
-    companyList.id = 'company-list';
-    
-    // Create company entries with tooltips
-    const companies = [
-      ['holdings', 'Redwood Holdings, Inc'],
-      ['investments', 'Redwood Investments, LLC'],
-      ['realestate', 'Redwood Real Estate Group'],
-      ['foundation', 'The Redwood Hope Foundation']
-    ];
+      /**
+       * Fades in the audio over the specified duration.
+       * @param {HTMLAudioElement} audio - The audio element.
+       * @param {number} duration - Duration in milliseconds.
+       */
+      function fadeIn(audio, duration) {
+        const interval = 50; // Interval time in ms
+        const increment = interval / duration;
+        const fadeInInterval = setInterval(() => {
+          if (audio.volume < 1) {
+            audio.volume = Math.min(audio.volume + increment, 1);
+          } else {
+            clearInterval(fadeInInterval);
+          }
+        }, interval);
+      }
 
-    companyList.innerHTML = companies.map(([key, name]) => `
-      <div class="tooltip-container">
-        <div>${name}</div>
-        <span class="tooltip">${tooltips[key]}</span>
-      </div>
-    `).join('<br><br>');
+      /**
+       * Fades out the audio over the specified duration.
+       * @param {HTMLAudioElement} audio - The audio element.
+       * @param {number} duration - Duration in milliseconds.
+       * @param {Function} callback - Callback function after fade-out.
+       */
+      function fadeOut(audio, duration, callback) {
+        const interval = 50; // Interval time in ms
+        const decrement = interval / duration;
+        const fadeOutInterval = setInterval(() => {
+          if (audio.volume > 0) {
+            audio.volume = Math.max(audio.volume - decrement, 0);
+          } else {
+            clearInterval(fadeOutInterval);
+            if (callback) callback();
+          }
+        }, interval);
+      }
 
-    document.body.appendChild(companyList);
+      /**
+       * Plays the audio with fade-in and handles fade-out before looping.
+       */
+      function playWithFade() {
+        audio.currentTime = 0;
+        const playPromise = audio.play();
 
-    // Trigger fade-in for the company list
-    setTimeout(() => {
-      companyList.style.opacity = '1';
-    }, 50);
-  } else {
-    // Move grid back to center
-    document.body.classList.remove('grid-moved');
-    grid.classList.remove('move-top-left');
-    gridMoved = false;
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            fadeIn(audio, 3000); // Fade in over 3 seconds
 
-    // Fade out the company list
-    if (companyList) {
-      companyList.style.opacity = '0';
-      companyList.style.transition = 'opacity 2s ease';
-      setTimeout(() => {
-        if (companyList.parentElement) {
-          companyList.parentElement.removeChild(companyList);
+            // Listen for the 'timeupdate' event to trigger fade-out 3 seconds before the end
+            audio.addEventListener('timeupdate', function handleFadeOut() {
+              if (audio.duration - audio.currentTime <= 3) {
+                // Start fading out
+                fadeOut(audio, 3000, () => {
+                  audio.pause();
+                  playWithFade(); // Restart the audio after fade-out
+                });
+                // Remove this event listener to prevent multiple triggers
+                audio.removeEventListener('timeupdate', handleFadeOut);
+              }
+            });
+          }).catch(error => {
+            console.warn('Autoplay was prevented.', error);
+            // Since playback is initiated via user interaction, this should rarely occur
+          });
         }
-      }, 2000);
-    }
-  }
-});
+      }
 
-// Set random animation delay for letters
-const letters = document.querySelectorAll('.letter');
-letters.forEach(letter => {
-  const randomDelayMs = Math.random() * 4500 + 1000;
-  const randomDelaySeconds = randomDelayMs / 1000;
-  letter.style.animationDelay = `${randomDelaySeconds}s`;
-});
+      /**
+       * Global click listener to start audio playback on the user's first click.
+       */
+      document.addEventListener('click', () => {
+        playWithFade();
+      }, { once: true });
 
-// Update viewport height for mobile responsiveness
-function updateViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
+      /**
+       * Grid movement and company list toggle on click.
+       */
+      grid.addEventListener('click', () => {
+        if (!gridMoved) {
+          // Move grid to top-left
+          document.body.classList.add('grid-moved');
+          grid.classList.add('move-top-left');
+          gridMoved = true;
 
-// Update on page load
-updateViewportHeight();
+          // Tooltip Texts
+          const tooltips = {
+            'holdings': 'The central holding entity of the Redwood Hope Trust, guiding ventures that merge creativity, culture, and commerce to redefine societal impact through transformative innovation.',
+            'investments': 'A diversified investment arm funding creative ventures and philanthropy. Home to the Redwood Vision Fund, empowering innovation in creativity, technology, and psychology.',
+            'realestate': 'Oversees a portfolio of iconic properties, including cultural landmarks and serene living spaces, blending functionality with imaginative design.',
+            'foundation': 'A philanthropic initiative fostering creativity and exploration. Provides grants across art, writing, and psychoanalysis to transform cultural landscapes.'
+          };
 
-// Update on resize
-window.addEventListener('resize', updateViewportHeight);
+          // Create Company List
+          companyList = document.createElement('div');
+          companyList.id = 'company-list';
+          
+          // Define Companies
+          const companies = [
+            ['holdings', 'Redwood Holdings, Inc'],
+            ['investments', 'Redwood Investments, LLC'],
+            ['realestate', 'Redwood Real Estate Group'],
+            ['foundation', 'The Redwood Hope Foundation']
+          ];
 
+          // Populate Company List with Tooltips
+          companyList.innerHTML = companies.map(([key, name]) => `
+            <div class="tooltip-container">
+              <div>${name}</div>
+              <span class="tooltip">${tooltips[key]}</span>
+            </div>
+          `).join('<br><br>');
 
+          // Append Company List to Body
+          document.body.appendChild(companyList);
 
-		 // Select the audio element
-const audio = document.getElementById('background-music');
+          // Trigger Fade-In for the Company List
+          setTimeout(() => {
+            companyList.style.opacity = '1';
+          }, 50);
 
-// Initialize audio settings
-audio.volume = 0; // Start with volume at 0 for fade-in
-audio.loop = false; // We'll handle looping manually
+          // Note: Audio playback is handled by the global click listener
 
-// Function to fade in the audio over a specified duration
-function fadeIn(audio, duration) {
-  const interval = 50; // Interval time in ms
-  const increment = interval / duration;
-  const fadeInInterval = setInterval(() => {
-    if (audio.volume < 1) {
-      audio.volume = Math.min(audio.volume + increment, 1);
-    } else {
-      clearInterval(fadeInInterval);
-    }
-  }, interval);
-}
+        } else {
+          // Move grid back to center
+          document.body.classList.remove('grid-moved');
+          grid.classList.remove('move-top-left');
+          gridMoved = false;
 
-// Function to fade out the audio over a specified duration
-function fadeOut(audio, duration, callback) {
-  const interval = 50; // Interval time in ms
-  const decrement = interval / duration;
-  const fadeOutInterval = setInterval(() => {
-    if (audio.volume > 0) {
-      audio.volume = Math.max(audio.volume - decrement, 0);
-    } else {
-      clearInterval(fadeOutInterval);
-      if (callback) callback();
-    }
-  }, interval);
-}
+          // Fade Out and Remove the Company List
+          if (companyList) {
+            companyList.style.opacity = '0';
+            companyList.style.transition = 'opacity 2s ease';
+            setTimeout(() => {
+              if (companyList.parentElement) {
+                companyList.parentElement.removeChild(companyList);
+              }
+            }, 2000);
+          }
 
-// Function to play the audio with fade-in and handle fade-out before looping
-function playWithFade() {
-  audio.currentTime = 0;
-  audio.play();
-  fadeIn(audio, 3000); // Fade in over 3 seconds
+          // Optionally, Pause the Audio When Grid Moves Back
+          // Uncomment the lines below if you want to pause audio when grid is centered
 
-  // Listen for the 'timeupdate' event to trigger fade-out 3 seconds before the end
-  audio.addEventListener('timeupdate', function handleFadeOut() {
-    if (audio.duration - audio.currentTime <= 3) {
-      // Start fading out
-      fadeOut(audio, 3000, () => {
-        audio.pause();
-        playWithFade(); // Restart the audio after fade-out
+          /*
+          if (!audio.paused) {
+            fadeOut(audio, 3000, () => {
+              audio.pause();
+            });
+          }
+          */
+        }
       });
-      // Remove this event listener to prevent multiple triggers
-      audio.removeEventListener('timeupdate', handleFadeOut);
-    }
-  });
-}
 
-// Start playing the audio when the page loads
-window.addEventListener('load', () => {
-  // Ensure the audio metadata is loaded to get the duration
-  if (audio.readyState >= 1) { // HAVE_METADATA
-    playWithFade();
-  } else {
-    audio.addEventListener('loadedmetadata', playWithFade);
-  }
-});
+      /**
+       * Set random animation delays for grid letters.
+       */
+      const letters = document.querySelectorAll('.letter');
+      letters.forEach(letter => {
+        const randomDelayMs = Math.random() * 4500 + 1000; // Between 1000ms and 5500ms
+        const randomDelaySeconds = randomDelayMs / 1000;
+        letter.style.animationDelay = `${randomDelaySeconds}s`;
+      });
 
+      /**
+       * Update viewport height for mobile responsiveness.
+       */
+      function updateViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+
+      // Update viewport height on page load
+      updateViewportHeight();
+
+      // Update viewport height on window resize
+      window.addEventListener('resize', updateViewportHeight);
     </script>
   </body>
 </html>
