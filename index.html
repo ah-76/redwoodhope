@@ -334,13 +334,13 @@
 
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            fadeIn(audio, 3000); // Fade in over 3 seconds
+            fadeIn(audio, 4000); // Fade in over 3 seconds
 
             // Listen for the 'timeupdate' event to trigger fade-out 3 seconds before the end
             audio.addEventListener('timeupdate', function handleFadeOut() {
-              if (audio.duration - audio.currentTime <= 3) {
+              if (audio.duration - audio.currentTime <= 4) {
                 // Start fading out
-                fadeOut(audio, 3000, () => {
+                fadeOut(audio, 4000, () => {
                   audio.pause();
                   playWithFade(); // Restart the audio after fade-out
                 });
