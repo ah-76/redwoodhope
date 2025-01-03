@@ -80,6 +80,12 @@
         text-align: center;
         transition: all 2s ease;
         transform-origin: top left;
+
+        /* Prevent text selection */
+        -webkit-user-select: none; /* Chrome, Safari, Opera */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard syntax */
       }
 
       .grid:hover { 
@@ -109,6 +115,12 @@
         opacity: 0;
         filter: blur(5px);
         animation: fadeIn 3s forwards;
+
+        /* Prevent text selection */
+        -webkit-user-select: none; /* Chrome, Safari, Opera */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard syntax */
       }
 
       @keyframes fadeIn {
@@ -195,6 +207,12 @@
         color: rgba(85, 107, 47, 0.9);
         opacity: 0;
         transition: opacity 4s ease 1.5s;
+
+        /* Prevent text selection */
+        -webkit-user-select: none; /* Chrome, Safari, Opera */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard syntax */
       }
 
       /* Tooltip Container */
@@ -204,6 +222,12 @@
         margin: 5px 0; /* Reduce vertical spacing */
         cursor: crosshair;
         line-height: 0.8; /* Control line spacing */
+
+        /* Prevent text selection */
+        -webkit-user-select: none; /* Chrome, Safari, Opera */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard syntax */
       }
 
       /* Tooltip Styling */
@@ -227,6 +251,12 @@
         font-weight: 300;
         line-height: 1.4;
         z-index: 1000;
+
+        /* Prevent text selection */
+        -webkit-user-select: none; /* Chrome, Safari, Opera */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard syntax */
       }
 
       /* Tooltip Arrow (Hidden) */
@@ -250,20 +280,8 @@
         }
         .tooltip {
           font-size: 14px;	
-			  width: 200px;
+          width: 200px;
         }
-			.body {
-				  /* Prevent text selection */
-        -webkit-user-select: none; /* Chrome, Safari, Opera */
-        -moz-user-select: none;    /* Firefox */
-        -ms-user-select: none;     /* Internet Explorer/Edge */
-        user-select: none;         /* Standard syntax */
-
-        /* Prevent touch callouts on iOS */
-        -webkit-touch-callout: none;
-
-        /* Prevent double-tap zoom on mobile */
-        touch-action: manipulation;
       }
     </style>
   </head>
@@ -347,9 +365,9 @@
 
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            fadeIn(audio, 4000); // Fade in over 3 seconds
+            fadeIn(audio, 4000); // Fade in over 4 seconds
 
-            // Listen for the 'timeupdate' event to trigger fade-out 3 seconds before the end
+            // Listen for the 'timeupdate' event to trigger fade-out 4 seconds before the end
             audio.addEventListener('timeupdate', function handleFadeOut() {
               if (audio.duration - audio.currentTime <= 4) {
                 // Start fading out
