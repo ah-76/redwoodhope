@@ -44,7 +44,7 @@
         background-position: center;
         opacity: 0;
         z-index: -1;
-        animation: fadeInBackground 1s forwards;
+        animation: fadeInBackground 2s forwards;
         /* Fade-in animation for background */
       }
 
@@ -78,19 +78,20 @@
         align-items: center;
         opacity: 0;
         /* Start invisible */
-        animation: fadeIn 2s forwards;
+        animation: fadeIn 3s forwards;
       }
 
       /* Fade-in animation */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-
-        to {
-          opacity: 1;
-        }
-      }
+     @keyframes fadeIn {
+  from {
+    opacity: 0;
+    filter: blur(5px); /* Added line */
+  }
+  to {
+    opacity: 1;
+    filter: blur(0); /* Added line */
+  }
+}
 
       /* Vertically aligned HOPE letters */
       .hope-h {
