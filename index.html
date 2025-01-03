@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
     <style>
       /* Reset and Box-Sizing */
-      html, body {
+      html,
+      body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -27,16 +28,17 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow: hidden;
-
         /* Prevent text selection */
-        -webkit-user-select: none; /* Chrome, Safari, Opera */
-        -moz-user-select: none;    /* Firefox */
-        -ms-user-select: none;     /* Internet Explorer/Edge */
-        user-select: none;         /* Standard syntax */
-
+        -webkit-user-select: none;
+        /* Chrome, Safari, Opera */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+        user-select: none;
+        /* Standard syntax */
         /* Prevent touch callouts on iOS */
         -webkit-touch-callout: none;
-
         /* Prevent double-tap zoom on mobile */
         touch-action: manipulation;
       }
@@ -61,6 +63,7 @@
         from {
           opacity: 0;
         }
+
         to {
           opacity: 0.1;
         }
@@ -82,8 +85,8 @@
         transform-origin: top left;
       }
 
-      .grid:hover { 
-        cursor: pointer; 
+      .grid:hover {
+        cursor: pointer;
       }
 
       .grid.move-top-left {
@@ -116,6 +119,7 @@
           opacity: 0;
           filter: blur(5px);
         }
+
         to {
           opacity: 1;
           filter: blur(0);
@@ -200,10 +204,13 @@
       /* Tooltip Container */
       .tooltip-container {
         position: relative;
-        display: inline-block; /* Prevent div from taking up full width */
-        margin: 5px 0; /* Reduce vertical spacing */
+        display: inline-block;
+        /* Prevent div from taking up full width */
+        margin: 5px 0;
+        /* Reduce vertical spacing */
         cursor: crosshair;
-        line-height: 0.8; /* Control line spacing */
+        line-height: 0.8;
+        /* Control line spacing */
       }
 
       /* Tooltip Styling */
@@ -211,7 +218,7 @@
         position: absolute;
         bottom: 20%;
         left: 0;
-        transform: translateY(0) translateX(10px); 
+        transform: translateY(0) translateX(10px);
         padding: 1rem 1.5rem;
         background: rgba(17, 17, 17, 0.95);
         color: rgba(119, 119, 119, 0.9);
@@ -245,21 +252,36 @@
         .grid {
           font-size: 40px;
         }
+
         #company-list {
-          font-size: 20px;	
+          font-size: 20px;
         }
+
         .tooltip {
-          font-size: 14px;	
-			  width: 200px;
+          font-size: 14px;
+          width: 200px;
         }
-      }
+
+        .body {
+          /* Prevent text selection */
+          -webkit-user-select: none;
+          /* Chrome, Safari, Opera */
+          -moz-user-select: none;
+          /* Firefox */
+          -ms-user-select: none;
+          /* Internet Explorer/Edge */
+          user-select: none;
+          /* Standard syntax */
+          /* Prevent touch callouts on iOS */
+          -webkit-touch-callout: none;
+          /* Prevent double-tap zoom on mobile */
+          touch-action: manipulation;
+        }
     </style>
   </head>
   <body>
-
     <!-- Audio Element -->
     <audio id="background-music" src="forest.mp3" preload="auto"></audio>
-
     <!-- Logo Layout in a Grid -->
     <div class="grid">
       <!-- HOPE Letters -->
@@ -279,17 +301,13 @@
     <script>
       // Track the state of the grid
       let gridMoved = false;
-
       const grid = document.querySelector('.grid');
       let companyList;
-
       // Audio Control
       const audio = document.getElementById('background-music');
-
       // Initialize audio settings
       audio.volume = 0; // Start with volume at 0 for fade-in
       audio.loop = false; // We'll handle looping manually
-
       /**
        * Fades in the audio over the specified duration.
        * @param {HTMLAudioElement} audio - The audio element.
@@ -306,7 +324,6 @@
           }
         }, interval);
       }
-
       /**
        * Fades out the audio over the specified duration.
        * @param {HTMLAudioElement} audio - The audio element.
@@ -325,18 +342,15 @@
           }
         }, interval);
       }
-
       /**
        * Plays the audio with fade-in and handles fade-out before looping.
        */
       function playWithFade() {
         audio.currentTime = 0;
         const playPromise = audio.play();
-
         if (playPromise !== undefined) {
           playPromise.then(() => {
             fadeIn(audio, 4000); // Fade in over 3 seconds
-
             // Listen for the 'timeupdate' event to trigger fade-out 3 seconds before the end
             audio.addEventListener('timeupdate', function handleFadeOut() {
               if (audio.duration - audio.currentTime <= 4) {
@@ -355,115 +369,101 @@
           });
         }
       }
-
       /**
        * Global click listener to start audio playback on the user's first click.
        */
       document.addEventListener('click', () => {
         playWithFade();
-      }, { once: true });
-
+      }, {
+        once: true
+      });
       /**
        * Grid movement and company list toggle on click.
        */
       grid.addEventListener('click', () => {
-        if (!gridMoved) {
-          // Move grid to top-left
-          document.body.classList.add('grid-moved');
-          grid.classList.add('move-top-left');
-          gridMoved = true;
-
-          // Tooltip Texts
-          const tooltips = {
-            'holdings': 'The central holding entity of the Redwood Hope Trust, guiding ventures that merge creativity, culture, and commerce to redefine societal impact through transformative innovation.',
-            'investments': 'A diversified investment arm funding creative ventures and philanthropy. Home to the Redwood Vision Fund, empowering innovation in creativity, technology, and psychology.',
-            'realestate': 'Oversees a portfolio of iconic properties, including cultural landmarks and serene living spaces, blending functionality with imaginative design.',
-            'foundation': 'A philanthropic initiative fostering creativity and exploration. Provides grants across art, writing, and psychoanalysis to transform cultural landscapes.'
-          };
-
-          // Create Company List
-          companyList = document.createElement('div');
-          companyList.id = 'company-list';
-          
-          // Define Companies
-          const companies = [
-            ['holdings', 'Redwood Holdings, Inc'],
-            ['investments', 'Redwood Investments, LLC'],
-            ['realestate', 'Redwood Real Estate Group'],
-            ['foundation', 'The Redwood Hope Foundation']
-          ];
-
-          // Populate Company List with Tooltips
-          companyList.innerHTML = companies.map(([key, name]) => `
-            <div class="tooltip-container">
-              <div>${name}</div>
-              <span class="tooltip">${tooltips[key]}</span>
-            </div>
-          `).join('<br><br>');
-
-          // Append Company List to Body
-          document.body.appendChild(companyList);
-
-          // Trigger Fade-In for the Company List
-          setTimeout(() => {
-            companyList.style.opacity = '1';
-          }, 50);
-
-          // Note: Audio playback is handled by the global click listener
-
-        } else {
-          // Move grid back to center
-          document.body.classList.remove('grid-moved');
-          grid.classList.remove('move-top-left');
-          gridMoved = false;
-
-          // Fade Out and Remove the Company List
-          if (companyList) {
-            companyList.style.opacity = '0';
-            companyList.style.transition = 'opacity 2s ease';
-            setTimeout(() => {
-              if (companyList.parentElement) {
-                companyList.parentElement.removeChild(companyList);
+            if (!gridMoved) {
+              // Move grid to top-left
+              document.body.classList.add('grid-moved');
+              grid.classList.add('move-top-left');
+              gridMoved = true;
+              // Tooltip Texts
+              const tooltips = {
+                'holdings': 'The central holding entity of the Redwood Hope Trust, guiding ventures that merge creativity, culture, and commerce to redefine societal impact through transformative innovation.',
+                'investments': 'A diversified investment arm funding creative ventures and philanthropy. Home to the Redwood Vision Fund, empowering innovation in creativity, technology, and psychology.',
+                'realestate': 'Oversees a portfolio of iconic properties, including cultural landmarks and serene living spaces, blending functionality with imaginative design.',
+                'foundation': 'A philanthropic initiative fostering creativity and exploration. Provides grants across art, writing, and psychoanalysis to transform cultural landscapes.'
+              };
+              // Create Company List
+              companyList = document.createElement('div');
+              companyList.id = 'company-list';
+              // Define Companies
+              const companies = [
+                ['holdings', 'Redwood Holdings, Inc'],
+                ['investments', 'Redwood Investments, LLC'],
+                ['realestate', 'Redwood Real Estate Group'],
+                ['foundation', 'The Redwood Hope Foundation']
+              ];
+              // Populate Company List with Tooltips
+              companyList.innerHTML = companies.map(([key, name]) => `
+            
+						<div class="tooltip-container">
+							<div>${name}</div>
+							<span class="tooltip">${tooltips[key]}</span>
+						</div>
+          `).join(' < br > < br > ');
+                // Append Company List to Body
+                document.body.appendChild(companyList);
+                // Trigger Fade-In for the Company List
+                setTimeout(() => {
+                  companyList.style.opacity = '1';
+                }, 50);
+                // Note: Audio playback is handled by the global click listener
               }
-            }, 2000);
-          }
-
-          // Optionally, Pause the Audio When Grid Moves Back
-          // Uncomment the lines below if you want to pause audio when grid is centered
-
-          /*
-          if (!audio.paused) {
-            fadeOut(audio, 3000, () => {
-              audio.pause();
+              else {
+                // Move grid back to center
+                document.body.classList.remove('grid-moved');
+                grid.classList.remove('move-top-left');
+                gridMoved = false;
+                // Fade Out and Remove the Company List
+                if (companyList) {
+                  companyList.style.opacity = '0';
+                  companyList.style.transition = 'opacity 2s ease';
+                  setTimeout(() => {
+                    if (companyList.parentElement) {
+                      companyList.parentElement.removeChild(companyList);
+                    }
+                  }, 2000);
+                }
+                // Optionally, Pause the Audio When Grid Moves Back
+                // Uncomment the lines below if you want to pause audio when grid is centered
+                /*
+                if (!audio.paused) {
+                  fadeOut(audio, 3000, () => {
+                    audio.pause();
+                  });
+                }
+                */
+              }
             });
+          /**
+           * Set random animation delays for grid letters.
+           */
+          const letters = document.querySelectorAll('.letter'); letters.forEach(letter => {
+            const randomDelayMs = Math.random() * 4500 + 1000; // Between 1000ms and 5500ms
+            const randomDelaySeconds = randomDelayMs / 1000;
+            letter.style.animationDelay = `${randomDelaySeconds}s`;
+          });
+          /**
+           * Update viewport height for mobile responsiveness.
+           */
+          function updateViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
           }
-          */
-        }
-      });
-
-      /**
-       * Set random animation delays for grid letters.
-       */
-      const letters = document.querySelectorAll('.letter');
-      letters.forEach(letter => {
-        const randomDelayMs = Math.random() * 4500 + 1000; // Between 1000ms and 5500ms
-        const randomDelaySeconds = randomDelayMs / 1000;
-        letter.style.animationDelay = `${randomDelaySeconds}s`;
-      });
-
-      /**
-       * Update viewport height for mobile responsiveness.
-       */
-      function updateViewportHeight() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-      }
-
-      // Update viewport height on page load
-      updateViewportHeight();
-
-      // Update viewport height on window resize
-      window.addEventListener('resize', updateViewportHeight);
+          // Update viewport height on page load
+          updateViewportHeight();
+          // Update viewport height on window resize
+          window.addEventListener('resize', updateViewportHeight);
     </script>
   </body>
 </html>
